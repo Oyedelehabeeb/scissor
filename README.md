@@ -9,7 +9,7 @@ Custom URLs: Create personalized URLs by choosing custom slugs.
 QR Code Generation: Generate unique QR codes for each shortened URL.
 Basic Analytics: Track the number of clicks for each shortened URL.
 Light/Dark Mode: Switch between light and dark modes for a better user experience.
-Responsive Design: Optimized for use on both desktop and mobile devices.
+Responsive Design: Optimized for use on both desktop and tablet.
 
 ## Technologies Used
 
