@@ -30,21 +30,17 @@ const UpdateUserDetails: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-2xl dark:bg-slate-700 mx-auto p-6 rounded-lg "
+      className="max-w-2xl dark:bg-slate-700 mx-auto p-4 sm:p-6 md:p-8 lg:p-10 mt-8 rounded-lg"
     >
-      {/* <h2 className="text-2xl font-semibold mb-6 dark:text-slate-800">
-        Account Settings
-      </h2> */}
-
-      <div className="bg-white shadow-md rounded-lg p-6 mb-8 dark:bg-slate-700">
-        <h3 className="text-xl font-semibold mb-4 dark:text-slate-500">
+      <div className="bg-white shadow-md rounded-lg p-4 sm:p-6 md:p-8 mb-8 dark:bg-slate-700">
+        <h3 className="text-lg sm:text-xl font-semibold mb-4 dark:text-slate-500 text-center">
           Account Details
         </h3>
 
         {/* Email */}
         <div className="mb-4">
           <label
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
             htmlFor="email"
           >
             Email Address
@@ -52,7 +48,7 @@ const UpdateUserDetails: React.FC = () => {
           <input
             id="email"
             type="email"
-            className="w-full px-4 py-2 border rounded-lg bg-gray-100 cursor-not-allowed dark:bg-slate-800 text-gray-600"
+            className="w-full px-4 py-2 border rounded-lg bg-gray-100 cursor-not-allowed dark:bg-slate-900 text-gray-600"
             disabled
             value={email}
           />
@@ -61,7 +57,7 @@ const UpdateUserDetails: React.FC = () => {
         {/* Full Name */}
         <div className="mb-4">
           <label
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
             htmlFor="fullName"
           >
             Full Name
@@ -69,7 +65,7 @@ const UpdateUserDetails: React.FC = () => {
           <input
             id="fullName"
             type="text"
-            className="w-full px-4 py-2 border rounded-lg dark:bg-slate-800 text-gray-600"
+            className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 text-gray-600"
             placeholder="Enter your full name"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
@@ -79,7 +75,7 @@ const UpdateUserDetails: React.FC = () => {
         {/* Avatar Image */}
         <div className="mb-4">
           <label
-            className="block text-gray-700 font-medium mb-2"
+            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
             htmlFor="avatar"
           >
             Avatar Image
@@ -87,7 +83,7 @@ const UpdateUserDetails: React.FC = () => {
           <input
             id="avatar"
             type="file"
-            className="w-full px-4 py-2 border rounded-lg dark:bg-slate-800 text-gray-600"
+            className="w-full px-4 py-2 border rounded-lg dark:bg-slate-900 text-gray-600"
             accept="image/*"
             onChange={handleAvatarChange}
           />

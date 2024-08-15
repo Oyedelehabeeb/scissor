@@ -12,7 +12,7 @@ const ScissorHero = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="relative h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8"
     >
       {/* Dynamic Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-400 to-purple-500">
@@ -34,17 +34,17 @@ const ScissorHero = () => {
       </div>
 
       {/* Floating elements */}
-      {[...Array(20)].map((_, i) => (
+      {[...Array(10)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full bg-white mix-blend-overlay filter blur-xl"
           style={{
-            width: Math.random() * 100 + 50,
-            height: Math.random() * 100 + 50,
+            width: `${Math.random() * 50 + 25}px`,
+            height: `${Math.random() * 50 + 25}px`,
           }}
           animate={{
-            x: [0, Math.random() * 400 - 200],
-            y: [0, Math.random() * 400 - 200],
+            x: [0, Math.random() * 200 - 100],
+            y: [0, Math.random() * 200 - 100],
             scale: [1, Math.random() + 0.5, 1],
             opacity: [0.1, 0.3, 0.1],
           }}
@@ -57,12 +57,12 @@ const ScissorHero = () => {
       ))}
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+      <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center text-center">
         <motion.h1
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 120, delay: 0.2 }}
-          className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-blue-100 mb-6"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-blue-100 mb-4 sm:mb-6"
           style={{ fontFamily: "'Playfair Display', serif" }}
         >
           Simplify Your Links with{" "}
@@ -78,7 +78,7 @@ const ScissorHero = () => {
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="text-xl md:text-2xl text-white mb-8 max-w-3xl"
+          className="text-lg sm:text-xl md:text-2xl text-white mb-6 sm:mb-8 max-w-3xl"
           style={{ fontFamily: "'Merriweather', serif" }}
         >
           Shorten your URLs, customize them, generate QR codes, and track
@@ -88,7 +88,7 @@ const ScissorHero = () => {
         <motion.button
           whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(0,0,0,0.2)" }}
           whileTap={{ scale: 0.95 }}
-          className="px-8 py-3 bg-white text-blue-600 text-lg font-bold rounded-full hover:bg-opacity-90 transition duration-300 shadow-lg"
+          className="px-6 sm:px-8 py-2 sm:py-3 bg-white text-blue-600 text-base sm:text-lg font-bold rounded-full hover:bg-opacity-90 transition duration-300 shadow-lg"
           style={{ fontFamily: "'Poppins', sans-serif" }}
           onClick={handleGoToHome}
         >
@@ -96,38 +96,38 @@ const ScissorHero = () => {
         </motion.button>
 
         {/* Animated Icons */}
-        <div className="absolute top-10 left-10 text-white">
+        <div className="absolute top-4 left-4 sm:top-10 sm:left-10 text-white">
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-            className="text-3xl"
+            className="text-xl sm:text-3xl"
           >
             <FaLink />
           </motion.div>
         </div>
-        <div className="absolute bottom-10 right-10 text-white">
+        <div className="absolute bottom-4 right-4 sm:bottom-10 sm:right-10 text-white">
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="text-3xl"
+            className="text-xl sm:text-3xl"
           >
             <FaCut />
           </motion.div>
         </div>
-        <div className="absolute top-1/4 right-10 text-white">
+        <div className="absolute top-1/4 right-4 sm:right-10 text-white">
           <motion.div
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="text-3xl"
+            className="text-xl sm:text-3xl"
           >
             <FaQrcode />
           </motion.div>
         </div>
-        <div className="absolute bottom-1/4 left-10 text-white">
+        <div className="absolute bottom-1/4 left-4 sm:left-10 text-white">
           <motion.div
             animate={{ rotate: [-10, 10, -10] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="text-3xl"
+            className="text-xl sm:text-3xl"
           >
             <FaChartLine />
           </motion.div>
