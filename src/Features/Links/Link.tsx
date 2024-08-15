@@ -56,7 +56,7 @@ const Link: React.FC = () => {
       {filteredLinks.length === 0 ? (
         <div className="text-center py-[150px]">
           <p className="text-3xl text-gray-600 dark:text-slate-300">
-            No matching shortened links found. Try a different search term!
+            No shortened links found. Try to create one.
           </p>
           <button
             onClick={handleGoHome}

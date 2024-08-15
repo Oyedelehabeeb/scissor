@@ -5,6 +5,7 @@ import { useLogin } from "./useLogin";
 import { loginWithProvider } from "../Services/apiAuth";
 import MiniLoader from "../ui/MiniLoader";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 interface LoginFormInputs {
   email: string;
@@ -117,6 +118,11 @@ const Login: React.FC = () => {
             Login with GitHub
           </button>
         </div>
+        <Link to="/signup">
+          <p className="text-center text-blue-500 mt-3">
+            Don't have an account yet? Please sign up.
+          </p>
+        </Link>
       </div>
     </motion.div>
   );

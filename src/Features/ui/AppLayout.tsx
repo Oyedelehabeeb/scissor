@@ -13,7 +13,7 @@ const AppLayout: React.FC = () => {
         <header className="fixed top-0 left-64 right-0 bg-white z-50 shadow-md">
           <Header />
         </header>
-        <main className="flex-1 mt-16 p-6 overflow-y-auto dark:bg-gray-500">
+        <main className="flex-1 mt-16 p-14 overflow-y-auto dark:bg-gray-500">
           <Outlet />
         </main>
       </div>

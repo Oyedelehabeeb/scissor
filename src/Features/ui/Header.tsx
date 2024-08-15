@@ -25,7 +25,11 @@ const Header: React.FC = () => {
         {/* Dark Mode Toggle */}
         <div className="flex items-center space-x-4">
           <button onClick={darkModeHandler}>
-            {dark ? <IoSunnyOutline size={24} /> : <FaRegMoon size={24} />}
+            {dark ? (
+              <IoSunnyOutline size={24} className="hover:bg-gray-100" />
+            ) : (
+              <FaRegMoon size={24} className="hover:bg-gray-100" />
+            )}
           </button>
         </div>
 

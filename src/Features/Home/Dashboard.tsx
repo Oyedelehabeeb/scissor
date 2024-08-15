@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { fetchShortenedUrl, insertShortenedUrl } from "../Services/apiLinks";
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
-import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
+import { Dialog } from "@headlessui/react";
 import toast from "react-hot-toast";
 import QRCode from "qrcode.react";
 
@@ -11,6 +11,7 @@ const Dashboard: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [showShareOptions, setShowShareOptions] = useState<boolean>(false);
   const [showQrCode, setShowQrCode] = useState<boolean>(false);
+  const qrCodeRef = useRef<HTMLDivElement>(null);
 
   const { data: shortenedUrl, refetch } = useQuery<string | null>(
     ["shortenedUrl", originalUrl],
@@ -29,15 +30,14 @@ const Dashboard: React.FC = () => {
       uniqueString: string;
     }) => insertShortenedUrl(originalUrl, uniqueString),
     onSuccess: () => {
-      refetch(); // Refresh the shortened URL
-      setIsModalOpen(true); // Open modal on success
+      refetch();
+      setIsModalOpen(true);
     },
   });
 
-  // Handle URL shortening
   const handleShorten = () => {
     if (!originalUrl || shortenedUrl) {
-      return; // Do nothing if there's no original URL or if URL is already shortened
+      return;
     }
 
     const uniqueString = `scissor/${Math.random()
@@ -47,7 +47,6 @@ const Dashboard: React.FC = () => {
     mutation.mutate({ originalUrl, uniqueString });
   };
 
-  // Handle copying to clipboard
   const handleCopyToClipboard = () => {
     if (shortenedUrl) {
       navigator.clipboard.writeText(shortenedUrl);
@@ -55,17 +54,32 @@ const Dashboard: React.FC = () => {
     }
   };
 
+  const handleDownloadQRCode = () => {
+    const qrCodeCanvas = qrCodeRef.current?.querySelector("canvas");
+    if (qrCodeCanvas) {
+      const qrCodeUrl = qrCodeCanvas.toDataURL("image/png");
+      const downloadLink = document.createElement("a");
+      downloadLink.href = qrCodeUrl;
+      downloadLink.download = "qr-code.png";
+      downloadLink.click();
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setOriginalUrl("");
+  };
+
   return (
-    <section className="bg-gray-100 text-center py-16 px-4 dark:bg-slate-700">
+    <section className="bg-gray-100 text-center py-24 px-4 dark:bg-slate-700">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-          Brief is the New Black
+          Welcome to Scissor!
         </h1>
         <p className="text-lg md:text-xl text-gray-600 mb-10 dark:text-slate-300">
-          Scissor is a simple tool that makes URLs as short as possible. We
-          believe brevity is the key to success in today’s fast-paced world.
-          Whether it’s music, speeches, or wedding receptions, the new black is
-          brief.
+          Scissor - The Ultimate URL Shortener for Effortless Link Management |
+          Shorten, Customize, and Share URLs with Ease. Boost Your Click-Through
+          Rates, Generate QR Codes, and Track Analytics in One Simple Platform.
         </p>
         <div className="flex justify-center items-center">
           <input
@@ -89,14 +103,13 @@ const Dashboard: React.FC = () => {
         </p>
       </div>
 
-      <Dialog open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      <Dialog open={isModalOpen} onClose={handleCloseModal}>
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <DialogPanel className="bg-white p-8 rounded-md max-w-[900px] mx-auto text-center dark:bg-gray-600">
-            <DialogTitle className="text-2xl font-bold mb-4 dark:text-slate-300">
+          <div className="bg-white p-8 rounded-md max-w-[900px] mx-auto text-center dark:bg-gray-600 relative">
+            <Dialog.Title className="text-2xl font-bold mb-4 dark:text-slate-300">
               Your shortened link is ready!
-            </DialogTitle>
+            </Dialog.Title>
             <div className="flex justify-around items-center p-5 rounded-md mb-4 bg-stone-200 dark:bg-stone-900">
-              <div></div>
               <span className="dark:text-slate-700">Shortened URL:</span>
               <a
                 href={shortenedUrl || "#"}
@@ -107,7 +120,7 @@ const Dashboard: React.FC = () => {
                 {shortenedUrl}
               </a>
               <button
-                onClick={() => handleCopyToClipboard()}
+                onClick={handleCopyToClipboard}
                 className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 dark:bg-slate-500 dark:hover:bg-black"
               >
                 Copy
@@ -126,8 +139,16 @@ const Dashboard: React.FC = () => {
               Share
             </button>
             {showQrCode && (
-              <div className="flex justify-center mt-4">
-                <QRCode value={shortenedUrl || ""} />
+              <div className="flex flex-col items-center mt-4">
+                <div ref={qrCodeRef}>
+                  <QRCode value={shortenedUrl || ""} />
+                </div>
+                <button
+                  onClick={handleDownloadQRCode}
+                  className="bg-blue-600 text-white px-4 py-2 mt-4 rounded hover:bg-blue-700 dark:bg-slate-500 dark:hover:bg-black"
+                >
+                  Download QR Code
+                </button>
               </div>
             )}
             {showShareOptions && (
@@ -138,7 +159,7 @@ const Dashboard: React.FC = () => {
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:text-blue-800"
                 >
-                  <FaFacebook size={28} />
+                  <FaFacebook size="28" />
                 </a>
                 <a
                   href="https://twitter.com/"
@@ -146,7 +167,7 @@ const Dashboard: React.FC = () => {
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:text-blue-800"
                 >
-                  <FaTwitter size={28} />
+                  <FaTwitter size="28" />
                 </a>
                 <a
                   href="https://www.linkedin.com/"
@@ -154,7 +175,7 @@ const Dashboard: React.FC = () => {
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:text-blue-800"
                 >
-                  <FaLinkedin size={28} />
+                  <FaLinkedin size="28" />
                 </a>
                 <a
                   href="https://www.whatsapp.com/"
@@ -162,17 +183,17 @@ const Dashboard: React.FC = () => {
                   rel="noopener noreferrer"
                   className="text-green-600 hover:text-green-800"
                 >
-                  <FaWhatsapp size={28} />
+                  <FaWhatsapp size="28" />
                 </a>
               </div>
             )}
             <button
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+              onClick={handleCloseModal}
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 bg-gray-200 rounded-full p-2"
             >
-              &times;
+              ✕
             </button>
-          </DialogPanel>
+          </div>
         </div>
       </Dialog>
     </section>

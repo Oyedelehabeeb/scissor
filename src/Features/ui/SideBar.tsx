@@ -7,6 +7,7 @@ import {
   RiSettings3Line,
   RiLogoutBoxRLine,
 } from "react-icons/ri";
+import { GrAnalytics } from "react-icons/gr";
 import { logout } from "../Services/apiAuth";
 
 const SideBar: React.FC = () => {
@@ -64,6 +65,21 @@ const SideBar: React.FC = () => {
           <RiLinksLine className="text-2xl mr-3" />
           <span className="text-lg font-medium">Link</span>
         </NavLink>
+
+        <NavLink
+          to="/analytics"
+          className={({ isActive }) =>
+            `mb-4 py-3 px-6 flex items-center rounded-lg transition-all duration-300
+            ${
+              isActive
+                ? "bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300"
+                : "hover:bg-stone-300 hover:text-blue-500 dark:hover:bg-slate-700"
+            }`
+          }
+        >
+          <GrAnalytics className="text-2xl mr-3" />
+          <span className="text-lg font-medium">Analytics</span>
+        </NavLink>
         <NavLink
           to="/settings"
           className={({ isActive }) =>
@@ -77,20 +93,6 @@ const SideBar: React.FC = () => {
         >
           <RiSettings3Line className="text-2xl mr-3" />
           <span className="text-lg font-medium">Settings</span>
-        </NavLink>
-        <NavLink
-          to="/analytics"
-          className={({ isActive }) =>
-            `mb-4 py-3 px-6 flex items-center rounded-lg transition-all duration-300
-            ${
-              isActive
-                ? "bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300"
-                : "hover:bg-stone-300 hover:text-blue-500 dark:hover:bg-slate-700"
-            }`
-          }
-        >
-          <RiSettings3Line className="text-2xl mr-3" />
-          <span className="text-lg font-medium">Analytics</span>
         </NavLink>
       </nav>
       <div className="px-4 mb-8">
