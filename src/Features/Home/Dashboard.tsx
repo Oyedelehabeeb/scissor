@@ -105,8 +105,8 @@ const Dashboard: React.FC = () => {
 
       <Dialog open={isModalOpen} onClose={handleCloseModal}>
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4">
-          <div className="bg-white p-4 sm:p-6 md:p-8 rounded-md w-full max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] mx-auto text-center dark:bg-gray-600 relative">
-            <Dialog.Title className="text-lg sm:text-xl md:text-2xl font-bold mb-4 dark:text-slate-300">
+          <div className="bg-white p-4 sm:p-6 md:p-8 rounded-md w-full max-w-[90%] sm:max-w-[80%] md:max-w-[50%] lg:max-w-[40%] mx-auto text-center dark:bg-gray-600 relative">
+            <Dialog.Title className="text-lg font-bold mb-4 dark:text-slate-300">
               Your shortened link is ready!
             </Dialog.Title>
             <div className="flex flex-col sm:flex-row justify-around items-center p-3 sm:p-4 md:p-5 rounded-md mb-4 bg-stone-200 dark:bg-stone-900">
