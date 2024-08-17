@@ -10,7 +10,7 @@ const RedirectPage: React.FC = () => {
   useEffect(() => {
     const redirect = async () => {
       if (shortUrl) {
-        const originalUrl = await fetchOriginalUrl(`scissor/${shortUrl}`);
+        const originalUrl = await fetchOriginalUrl(`/${shortUrl}`);
 
         if (originalUrl) {
           window.location.href = originalUrl;
