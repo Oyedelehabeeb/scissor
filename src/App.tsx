@@ -40,7 +40,7 @@ function App() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/link" element={<LinkPage />} />
-            <Route path="/:shortUrl" element={<RedirectPage />} />
+            <Route path="/scissor/:shortUrl" element={<RedirectPage />} />
             <Route path="/analytics" element={<AnalyticsPage />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>

@@ -1,5 +1,6 @@
+//I am not sure of this test as it didn't run well on my system. I also tried to seek assistance online but didn't really help.
 
-import { insertShortenedUrl } from "../Services/apiLinks"; // Adjust the path
+import { insertShortenedUrl } from "../Services/apiLinks";
 import { supabase } from "../Services/supabase";
 
 jest.mock("../path/to/your/supabaseClient");
