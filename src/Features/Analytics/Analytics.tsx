@@ -3,6 +3,7 @@ import { Pie } from "react-chartjs-2";
 import "chart.js/auto";
 import { FaLink, FaQrcode, FaMousePointer } from "react-icons/fa";
 import { supabase } from "../Services/supabase";
+import { getUserId } from "../Services/apiAuth";
 
 interface AnalyticsData {
   shortenedUrlCount: number;
@@ -17,10 +18,13 @@ const Analytics: React.FC = () => {
 
   useEffect(() => {
     const fetchAnalyticsData = async () => {
+      const userId = await getUserId();
+
       try {
         const { data: links, error } = await supabase
           .from("links")
-          .select("id, number_of_clicks");
+          .select("id, number_of_clicks")
+          .eq("user_id", userId);
 
         if (error) {
           console.error("Error fetching analytics data:", error);

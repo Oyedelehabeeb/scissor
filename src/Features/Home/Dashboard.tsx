@@ -5,6 +5,7 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { Dialog } from "@headlessui/react";
 import toast from "react-hot-toast";
 import QRCode from "qrcode.react";
+import { getUserId } from "../Services/apiAuth";
 
 const Dashboard: React.FC = () => {
   const [originalUrl, setOriginalUrl] = useState<string>("");
@@ -25,18 +26,25 @@ const Dashboard: React.FC = () => {
     mutationFn: ({
       originalUrl,
       uniqueString,
+      user_id,
     }: {
       originalUrl: string;
       uniqueString: string;
-    }) => insertShortenedUrl(originalUrl, uniqueString),
+      user_id: string;
+    }) => insertShortenedUrl(originalUrl, uniqueString, user_id),
     onSuccess: () => {
       refetch();
       setIsModalOpen(true);
     },
   });
 
-  const handleShorten = () => {
-    if (!originalUrl || shortenedUrl) {
+  async function handleShorten() {
+    const user_id = await getUserId();
+    if (!originalUrl) return;
+
+    const existingUrl = await fetchShortenedUrl(originalUrl); // Query for user's URL
+    if (existingUrl) {
+      toast.error("This URL has already been shortened.");
       return;
     }
 
@@ -44,8 +52,8 @@ const Dashboard: React.FC = () => {
       .toString(36)
       .substring(2, 8)}`;
 
-    mutation.mutate({ originalUrl, uniqueString });
-  };
+    mutation.mutate({ originalUrl, uniqueString, user_id });
+  }
 
   const handleCopyToClipboard = () => {
     if (shortenedUrl) {
@@ -74,7 +82,7 @@ const Dashboard: React.FC = () => {
     <section className="bg-gray-100 text-center py-8 px-4 sm:py-12 md:py-16 lg:py-24 dark:bg-slate-700">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 sm:mb-6 dark:text-gray-200">
-          Welcome to Scissor!
+          Ready to shorten your URLs easily?
         </h1>
         <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 mb-6 sm:mb-8 lg:mb-10 dark:text-slate-300">
           Scissor - The Ultimate URL Shortener for Effortless Link Management |
@@ -98,8 +106,8 @@ const Dashboard: React.FC = () => {
           </button>
         </div>
         <p className="text-xs sm:text-sm text-gray-500 mt-4">
-          Scissor thinks it can disrupt the URL-shortening industry and give the
-          likes of bit.ly and ow.ly a run for their money within two years.
+          Shorten links with a unique, shortened URL that can be easily shared
+          and customized.
         </p>
       </div>
 

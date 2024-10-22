@@ -8,6 +8,8 @@ const Header: React.FC = () => {
 
   const { user } = useUser();
   const fullName = user?.user_metadata?.fullName;
+  const full_name = user?.user_metadata?.full_name;
+
   const avatar = user?.user_metadata?.avatar;
 
   function darkModeHandler() {
@@ -22,7 +24,6 @@ const Header: React.FC = () => {
   return (
     <header className="bg-white shadow-md py-3 dark:bg-stone-900 dark:text-slate-300">
       <div className="container mx-auto px-10 py-3 flex items-center justify-between">
-        {/* Dark Mode Toggle */}
         <div className="flex items-center space-x-4">
           <button onClick={darkModeHandler}>
             {dark ? (
@@ -34,7 +35,7 @@ const Header: React.FC = () => {
         </div>
 
         <div className="flex items-center space-x-2">
-          <span className="font-medium">{fullName}</span>
+          <span className="font-medium">{fullName ? fullName : full_name}</span>
           <img
             className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold"
             src={avatar ? avatar : "default-user.jpg"}

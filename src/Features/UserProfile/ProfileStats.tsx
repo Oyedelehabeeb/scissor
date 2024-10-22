@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { getLinks } from "../Services/apiLinks";
+import { fetchUserLinks } from "../Services/apiLinks";
 import PageNotFound from "../Pages/PageNotFound";
 import Loader from "../ui/Loader";
 
@@ -15,7 +15,7 @@ const ProfileStats: React.FC = () => {
     isError,
   } = useQuery<LinksPropType[]>({
     queryKey: ["links"],
-    queryFn: getLinks,
+    queryFn: fetchUserLinks,
   });
 
   if (isLoading) {

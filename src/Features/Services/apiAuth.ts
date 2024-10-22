@@ -61,6 +61,15 @@ export async function getCurrentUser() {
   return data?.user;
 }
 
+export async function getUserId() {
+  const { data, error } = await supabase.auth.getUser();
+
+  if (error) {
+    throw new Error(`Error signing up: ${error.message}`);
+  }
+  return data?.user?.id;
+}
+
 export async function logout() {
   const { error } = await supabase.auth.signOut();
   if (error) {

@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getLinks } from "../Services/apiLinks";
 import LinkItem from "./ListItem";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Input from "../ui/Input";
+import { getUserId } from "../Services/apiAuth";
+import { fetchUserLinks } from "../Services/apiLinks";
 
 const Link: React.FC = () => {
+  const userId = getUserId();
+  console.log(userId);
+
   const { data: links } = useQuery({
     queryKey: ["links"],
-    queryFn: getLinks,
+    queryFn: fetchUserLinks,
   });
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredLinks, setFilteredLinks] = useState(links || []);
