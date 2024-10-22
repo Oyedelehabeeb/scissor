@@ -15,9 +15,10 @@ describe("insertShortenedUrl", () => {
 
     const originalUrl = "https://example.com";
     const uniqueString = "scissor/abc123";
+    const user_id = "xyz";
 
     // Call the function
-    const result = await insertShortenedUrl(originalUrl, uniqueString);
+    const result = await insertShortenedUrl(originalUrl, uniqueString, user_id);
 
     // Assertions
     expect(supabase.from).toHaveBeenCalledWith("links");
@@ -38,10 +39,11 @@ describe("insertShortenedUrl", () => {
 
     const originalUrl = "https://example.com";
     const uniqueString = "scissor/abc123";
+    const user_id = "xyz";
 
     // Expect an error to be thrown
-    await expect(insertShortenedUrl(originalUrl, uniqueString)).rejects.toThrow(
-      "Insertion failed"
-    );
+    await expect(
+      insertShortenedUrl(originalUrl, uniqueString, user_id)
+    ).rejects.toThrow("Insertion failed");
   });
 });
