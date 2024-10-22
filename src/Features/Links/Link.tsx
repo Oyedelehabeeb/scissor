@@ -4,13 +4,9 @@ import LinkItem from "./ListItem";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Input from "../ui/Input";
-import { getUserId } from "../Services/apiAuth";
 import { fetchUserLinks } from "../Services/apiLinks";
 
 const Link: React.FC = () => {
-  const userId = getUserId();
-  console.log(userId);
-
   const { data: links } = useQuery({
     queryKey: ["links"],
     queryFn: fetchUserLinks,

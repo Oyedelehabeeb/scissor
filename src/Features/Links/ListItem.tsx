@@ -24,7 +24,6 @@ const ListItem: React.FC<ListItemProps> = ({ link }) => {
   const { deleteLink, isLoading } = useDeleteLink();
 
   useEffect(() => {
-    // Update the number_of_clicks in Supabase when the count changes
     const updateClickCount = async () => {
       const { error } = await supabase
         .from("links")
@@ -47,7 +46,7 @@ const ListItem: React.FC<ListItemProps> = ({ link }) => {
 
   const handleDelete = async (id: string) => {
     try {
-      await deleteLink(id);
+      deleteLink(id);
       setIsModalOpen(false);
     } catch (error) {
       console.error("Failed to delete link:", error);
