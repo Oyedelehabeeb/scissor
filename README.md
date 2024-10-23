@@ -18,7 +18,7 @@ React: A powerful library for building user interfaces, providing the foundation
 React Query: Manages global remote and UI states, offering efficient data fetching, caching, synchronization, and more.
 React Hook Form: Facilitates form validation and control, allowing for smooth user input handling.
 React Icons: Provides a rich collection of icons to enhance the user interface with visual elements.
-React Chart.js: Used to visualize analytics data in a user-friendly manner.
+React Chart.js: Used to visualize analytics data in a user friendly manner.
 React Router Dom: Enables dynamic routing within the app, allowing users to navigate seamlessly between different views.
 React Hot Toast: Displays toast notifications to inform users of actions and updates in real-time.
 Tailwind CSS: Utilized for styling the app, offering utility-first CSS classes that help build responsive and modern UIs quickly.
