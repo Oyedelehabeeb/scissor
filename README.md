@@ -11,7 +11,7 @@ Basic Analytics: Track the number of clicks for each shortened URL.
 Light/Dark Mode: Switch between light and dark modes for a better user experience.
 Responsive Design: Optimized for use on both desktop, tablet, and mobile.
 
-## Technologies Used
+## Technologies used
 
 TypeScript: Ensures type safety across the entire application, making the codebase more robust and maintainable.
 React: A powerful library for building user interfaces, providing the foundation for the app's component-based structure.
