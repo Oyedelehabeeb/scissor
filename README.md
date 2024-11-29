@@ -1,6 +1,6 @@
 # Scissor - URL Shortening Platform
 
-Scissor is a web application that allows users to shorten URLs, create custom URLs, generate QR codes for URLs, and track basic analytics. The app is designed with a modern and responsive interface, providing users with a seamless experience. It also includes both light and dark mode options to suit different user preferences.
+Scissor is a website that allows users to shorten URLs, create custom URLs, generate QR codes for URLs, and track basic analytics. The app is designed with a modern and responsive interface, providing users with a seamless experience. It also includes both light and dark mode options to suit different user preferences.
 
 ## Features
 
