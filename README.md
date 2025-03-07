@@ -13,7 +13,7 @@ Responsive Design: Optimized for use on both desktop, tablet, and mobile.
 
 ## Technologies used
 
-TypeScript: Ensures type safety across the entire application, making the codebase more robust and maintainable.
+TypeScript: Ensures type safety across the entire web application, making the codebase more robust and maintainable.
 React: A powerful library for building user interfaces, providing the foundation for the app's component-based structure.
 React Query: Manages global remote and UI states, offering efficient data fetching, caching, synchronization, and more.
 React Hook Form: Facilitates form validation and control, allowing for smooth user input handling.
